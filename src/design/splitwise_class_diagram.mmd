@@ -1,0 +1,58 @@
+---
+title: Splitwise
+config:
+  class:
+    hideEmptyMembersBox: true
+---
+classDiagram
+    class User{
+        -Long id
+        -String name
+        -String phoneNumber
+        -String passWord
+        -List~Group~ groups
+    }
+    class Group{
+        -Long id
+        -String groupName
+        -User createdBy
+        -List~User~ members
+        -String description
+        -List~Expense~ expenses
+    }
+    Group "0..n" -- "1..n" User
+
+
+    class Expense{
+        -Long id
+        -String description
+        -Double amount
+        -User paidBy
+        -List~User~ owedBy
+        -Group group
+    }
+    Expense "0..n" -- "1..n" User
+    Expense "0..n" -- "1" Group
+
+    class UserExpense{
+        -Long id
+        -User user
+        -Expense expense
+        -Double amount
+        -ExpenseType expenseType
+    }
+    UserExpense "0..n" -- "1" User
+    UserExpense "1..n" -- "1" Expense
+    ExpenseType "1" -- "1..n" UserExpense
+
+    class ExpenseType{
+        <<enumeration>>
+        PAID, OWED
+    }
+    class Transaction{
+        -Long id
+        -User paidBy
+        -User paidTo
+        -Double amount
+    }
+    Transaction "0..n" -- "1" User
