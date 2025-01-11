@@ -20,4 +20,16 @@ public class Expense extends BaseModel{
     private List<UserExpense> userExpenses;
     @Enumerated(EnumType.STRING)
     ExpenseType expenseType;
+
+    @Override
+    public String toString() {
+        return "Expense{" +
+                "description='" + description + '\'' +
+                ", amount=" + amount +
+                ", createdBy=" + createdBy +
+                ", group=" + group +
+                ", userExpenses=" + userExpenses +
+                ", expenseType=" + expenseType +
+                '}';
+    }
 }

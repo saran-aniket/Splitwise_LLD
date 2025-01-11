@@ -11,8 +11,7 @@ import java.util.List;
 @Setter
 @Entity(name = "splitwise_users")
 public class User extends BaseModel{
-    private String name;
-    private String email;
+    private String username;
     private String password;
     private String phoneNumber;
     @OneToMany(mappedBy = "user")
